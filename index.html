@@ -17,8 +17,8 @@
 
 <body>
   <div class="container">
-    <div id="background-bottom" style="position:fixed; z-index: -4; height: 40px; bottom: 0; left: 0; right: 0; background-color: rgb(200, 200, 200); opacity: 1; pointer-events: none;"></div>
-    <div id="displaytext-version" style="position: fixed; font-size: 100%; right: 20px; bottom: 10px; text-align: right;">
+    <div id="background-bottom" style="position:fixed; z-index: 10; height: 40px; bottom: 0; left: 0; right: 0; background-color: rgb(200, 200, 200); opacity: 1; pointer-events: none;"></div>
+    <div id="displaytext-version" style="position: fixed; z-index: 11; font-size: 100%; right: 20px; bottom: 10px; text-align: right;">
       ver.1.00
     </div>
     <div id="page-setting" style="opacity: 1;">
@@ -29,7 +29,7 @@
       <div id="displaytext-subtitle" class="mt-1 mb-5" style="font-size: 300%; text-align: center;">
         設定
       </div>
-      <div class="mt-5" style=" left: 10%; transform: translateX(20%) scale(200%); position: fixed;">
+      <div class="mt-5" style=" left: 10%; transform: translateX(20%) scale(150%); position: fixed;">
         <div class="form-check">
           <input type="checkbox" name="setting-allquestion" id="check-setting-allquestion" value="false">
           <label for="check-setting-allquestion">
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <button id="button-start" class="btn btn-lg btn-primary mt-5 d-grid gap-2 col-6 mx-auto"  type="button" style="transform: translateY(900%); font-size: 140%;">開始</button>
+      <button id="button-start" class="btn btn-lg btn-primary mt-5 d-grid gap-2 col-6 mx-auto"  type="button" style="position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); font-size: 140%;">開始</button>
     </div>
 
     <div id="page-main" style="position: fixed; opacity: 0; pointer-events: none; top:0">
