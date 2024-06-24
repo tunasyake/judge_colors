@@ -206,7 +206,7 @@ quiz = [
       ]
   },
   {
-      "question" : "K₂CrO₄²⁻",
+      "question" : "K₂CrO₄",
       "correct" : [
           "黄色"
       ]
