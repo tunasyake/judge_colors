@@ -17,40 +17,83 @@
 
 <body>
   <div class="container">
-    
-    <div id="background-top" style="position:fixed; z-index: -5; height: 200px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(230, 245, 255); opacity: 1; pointer-events: none;"></div>
-    <div id="background-top" style="position:fixed; z-index: -4; height: 60px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(170, 220, 255); opacity: 1; pointer-events: none;"></div>
-
-    <div id="displaytext-title" class="mt-1 mb-3" style="font-size: 200%; text-align: center;">
-      無機化学 色判別
+    <div id="background-bottom" style="position:fixed; z-index: -4; height: 40px; bottom: 0; left: 0; right: 0; background-color: rgb(200, 200, 200); opacity: 1; pointer-events: none;"></div>
+    <div id="displaytext-version" style="position: fixed; font-size: 100%; right: 20px; bottom: 10px; text-align: right;">
+      ver.1.00
     </div>
-    <div id="displaytext-count" class="" style="font-size: 150%; text-align: center; color: rgb(136, 136, 136);">
-      Count
-    </div>
-    <div id="displaytext-question" class=" mb-5" style="font-size: 300%; text-align: center;">
-      Question
-    </div>
-    <div class="container text-center">
-      <div class="col">
-        <p></p>
-        <input id="textbox-answer" type="text" placeholder="解答を入力" class="form mt-5" style="width: 60%; height: 80px; font-size: 140%; left: 50%; text-align: center; ">
+    <div id="page-setting" style="opacity: 1;">
+      <div id="background-top" style="position:fixed; z-index: -4; height: 60px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(170, 220, 255); opacity: 1; pointer-events: none;"></div>
+      <div id="displaytext-title" class="mt-1 mb-5" style="font-size: 200%; text-align: center;">
+        無機化学 色判別
       </div>
+      <div id="displaytext-subtitle" class="mt-1 mb-5" style="font-size: 300%; text-align: center;">
+        設定
+      </div>
+      <div class="mt-5" style=" left: 10%; transform: translateX(20%) scale(200%); position: fixed;">
+        <div class="form-check">
+          <input type="checkbox" name="setting-allquestion" id="check-setting-allquestion" value="false">
+          <label for="check-setting-allquestion">
+            全問解答モード
+          </label>
+          <div id="displaytext-explain" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            登録されているすべての問題を出題します。
+          </div>
+          <div id="displaytext-explain" class="mb-3" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            ※「プリント以外からも出題」の影響を受ける。
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" name="setting-otherquestion" id="check-setting-additional" value="false" >
+          <label for="check-setting-additional">
+            プリント以外からも出題
+          </label>
+          <div id="displaytext-explain" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            先生のプリント以外にも主要な問題を出題するようになります。
+          </div>
+          <div id="displaytext-explain" class="mb-3" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            無効：全46問 / 有効：全58問
+          </div>
+        </div>
+      </div>
+      <button id="button-start" class="btn btn-lg btn-primary mt-5 d-grid gap-2 col-6 mx-auto"  type="button" style="transform: translateY(900%); font-size: 140%;">開始</button>
+    </div>
 
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <p></p>
-      <button id="button-answer" class="btn btn-lg btn-primary  mt-5"  type="button" style="height: 60px; font-size: 140%;">解答</button>
-    </div>
-    <div id="displaytext-caution" class="mt-5" style="font-size: 120%; text-align: left; color: rgb(105, 105, 105);">
-      ※「～色」を含む形で解答してください。
-    </div>
-    <div id="displaytext-caution" class="mt-1" style="font-size: 120%; text-align: left; color: rgb(105, 105, 105);">
-      ※このアプリケーションはスマートフォンでの使用を想定しています。
+    <div id="page-main" style="position: fixed; opacity: 0; pointer-events: none; top:0">
+      <div id="background-top" style="position:fixed; z-index: -5; height: 200px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(230, 245, 255); opacity: 1; pointer-events: none;"></div>
+      <div id="background-top" style="position:fixed; z-index: -4; height: 60px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(170, 220, 255); opacity: 1; pointer-events: none;"></div>
+      <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; transform: translateX(0%);">
+        <div id="displaytext-title" class="mt-1 mb-3" style="font-size: 200%; text-align: center;">
+          無機化学 色判別
+        </div>
+        <div id="displaytext-count" class="" style="font-size: 150%; text-align: center; color: rgb(136, 136, 136);">
+          [カウント]
+        </div>
+        <div id="displaytext-question" class=" mb-5" style="font-size: 300%; text-align: center;">
+          [化学式]
+        </div>
+        <div class="container text-center">
+          <div class="col">
+            <p></p>
+            <input id="textbox-answer" type="text" placeholder="解答を入力" class="form mt-5" style="width: 60%; height: 80px; font-size: 140%; left: 50%; text-align: center; ">
+          </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <p></p>
+          <button id="button-answer" class="btn btn-lg btn-primary  mt-5"  type="button" style="height: 60px; font-size: 140%;">解答</button>
+        </div>
+        <div id="displaytext-caution" class="mt-5" style="font-size: 120%; text-align: left; color: rgb(105, 105, 105);">
+          ※「～色」を含む形で解答してください。
+        </div>
+        <div id="displaytext-caution" class="mt-1" style="font-size: 120%; text-align: left; color: rgb(105, 105, 105);">
+          ※このアプリケーションはスマートフォンでの使用を想定しています。
+        </div>
+      </div>
     </div>
 
     <div id="modal-result-background" style="position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.2); opacity: 0; pointer-events: none;"></div>
 
-    <div id="modal-result-container" style="width: 70%; position: absolute; top: 160px; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; opacity: 0; pointer-events: none;">
-      <p id="displaytext-result-result" style="font-size: 250%;font-weight: 400;">[正解/不正解]</p>
+    <div id="modal-result-container" style="width: 70%; position: fixed; top: 160px; left: 50%; text-align: center; transform: translateX(-50%); background-color: #fff; padding: 20px; opacity: 0; pointer-events: none;">
+      <p id="displaytext-result-result" style="font-size: 250%;font-weight: 800;">[正解/不正解]</p>
       <p></p>
       <p id="displaytext-result-question" class="mb-4" style="font-size: 220%; font-weight: 400;">[問題]</p>
       <p id="displaytext-result-correct" style="font-size: 160%; color: rgb(220, 0, 0); font-weight: 1000;">[正答]</p>
@@ -59,11 +102,12 @@
       <div id="button-result-close" class="btn btn-lg btn-primary  mt-5" type="button" style="position:relative; left: 50%; top: 0px; transform: translateX(-50%); font-size: 100%;">次の問題へ</div>
     </div>
 
-    <div id="modal-totalscore-container" style="width: 70%; position: absolute; top: 200px; left: 50%; transform: translateX(-50%); background-color: #fff; padding: 20px; opacity: 0; pointer-events: none;">
+    <div id="modal-totalscore-container" style="width: 70%; position: fixed; top: 200px; left: 50%; text-align: center; transform: translateX(-50%); background-color: #fff; padding: 20px; opacity: 0; pointer-events: none;">
       <p id="displaytext-totalscore-finished" style="font-size: 250%; font-weight: 600;">全問終了!</p>
       <p></p>
       <p id="displaytext-totalscore-score" style="font-size: 200%; font-weight: 400;">[スコア]</p>
       <p id="displaytext-totalscore-comment" style="font-size: 180%; font-weight: 500; color: rgb(255, 50, 0);">[コメント]</p>
+      <p id="displaytext-totalscore-attention" style="font-size: 150%; font-weight: 400; color: rgb(82, 82, 82);">再読み込みで再挑戦</p>
     </div>
 
   </div>
