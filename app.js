@@ -229,7 +229,8 @@ quiz = [
           "赤褐色",
           "赤色",
           "赤（褐）色",
-          "赤(褐)色"
+          "赤(褐)色",
+          "暗赤色"
       ]
   },
   {
@@ -284,16 +285,110 @@ quiz = [
       ]
   }
 ]
+//追加問題設定-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+quizAdditional = [
+    {
+        "question" : "PbCl₂",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "Hg₂Cl₂",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "CaSO₄",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "SrSO₄",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "CaCO₃",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "FeO",
+        "correct" : [
+            "黒色"
+        ]
+    },
+    {
+        "question" : "Fe₃O₄",
+        "correct" : [
+            "黒色"
+        ]
+    },
+    {
+        "question" : "Fe₂O₃",
+        "correct" : [
+            "赤褐色"
+        ]
+    },
+    {
+        "question" : "ZnO",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "ZnS",
+        "correct" : [
+            "白色"
+        ]
+    },
+    {
+        "question" : "CdS",
+        "correct" : [
+            "黄色"
+        ]
+    },
+    {
+        "question" : "MnS",
+        "correct" : [
+            "桃色"
+        ]
+    }
+]
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //初期化
 let quizLenght = quiz.length;
 let answerCount = 0;
-const quizMaxCount = 15;
+let quizMaxCount = 15;
 let quizCount = quizMaxCount;
 let quizRemain = quizCount;
 let quizChosen = 0;
 let userAnswer = "";
 let userScore = 0;
+
+const setUp = () => {
+  if(document.getElementById('check-setting-additional').value === 'true'){
+    quiz = quiz.concat(quizAdditional)
+    quizLenght = quiz.length;
+  };
+  if(document.getElementById('check-setting-allquestion').value === 'true'){
+    quizMaxCount = quizLenght
+  };
+  console.log(quiz)
+  //問題設定
+  setQuestion();
+  //表示切り替え
+  document.getElementById('page-setting').style.opacity = 0;
+  document.getElementById('page-setting').style.pointerEvents = 'none';
+  document.getElementById('page-main').style.opacity = 1;
+  document.getElementById('page-main').style.pointerEvents = '';
+};
 
 const setQuestion = () => {
   console.log('run:setQuestion');
@@ -315,14 +410,22 @@ const displayResult = (r) => {
   document.getElementById('modal-result-background').style.pointerEvents = '';
   document.getElementById('modal-result-container').style.opacity = 1;
   document.getElementById('modal-result-container').style.pointerEvents = '';
+  document.getElementById('displaytext-result-result').style.color = 'rgb(0, 0, 0)' ;
+  //最後の問題の場合
+  if(quizRemain === 1){
+    document.getElementById('button-result-close').textContent = "結果画面へ"
+  }
+  //正誤判定
   if(r === true){
     //正解時
     document.getElementById('displaytext-result-result').textContent = '正解！' ;
+    document.getElementById('displaytext-result-result').style.color = 'rgb(220, 0, 0)' ;
     document.getElementById('displaytext-result-wrong').textContent = '' ;
     userScore++;
   } else{
     //不正解時
     document.getElementById('displaytext-result-result').textContent = '不正解...' ;
+    document.getElementById('displaytext-result-result').style.color = 'rgb(0, 33, 220)' ;
     document.getElementById('displaytext-result-wrong').textContent = ' ×  ' + userAnswer ;
   }
 };
@@ -352,7 +455,6 @@ const checkAnswer = () => {
   userAnswer = document.getElementById('textbox-answer').value;
   //モーダル表示
   displayResult(quiz[quizChosen].correct.includes(userAnswer));
-  
 };
 
 //次の問題へ
@@ -381,8 +483,27 @@ const nextQuestion = () => {
 
 //以下実行
 
-//問題表示
-setQuestion();
+//チェック
+document.getElementById('check-setting-allquestion').addEventListener('change', () => {
+  if(document.getElementById('check-setting-allquestion').value === 'true'){
+    document.getElementById('check-setting-allquestion').value = false
+  } else{
+    document.getElementById('check-setting-allquestion').value = true
+  };
+});
+//チェック
+document.getElementById('check-setting-additional').addEventListener('change', () => {
+  if(document.getElementById('check-setting-additional').value === 'true'){
+    document.getElementById('check-setting-additional').value = false
+  } else{
+    document.getElementById('check-setting-additional').value = true
+  };
+});
+
+//開始ボタン
+document.getElementById('button-start').addEventListener('click', () => {
+    setUp();
+  });
 
 //解答ボタン
 document.getElementById('button-answer').addEventListener('click', () => {
