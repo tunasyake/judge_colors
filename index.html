@@ -19,7 +19,7 @@
   <div class="container">
     <div id="background-bottom" style="position:fixed; z-index: 10; height: 40px; bottom: 0; left: 0; right: 0; background-color: rgb(200, 200, 200); opacity: 1; pointer-events: none;"></div>
     <div id="displaytext-version" style="position: fixed; z-index: 11; font-size: 100%; right: 20px; bottom: 10px; text-align: right;">
-      ver.1.00
+      ver.1.10
     </div>
     <div id="page-setting" style="opacity: 1;">
       <div id="background-top" style="position:fixed; z-index: -4; height: 60px; top: 0; bottom: 0; left: 0; right: 0; background-color: rgb(170, 220, 255); opacity: 1; pointer-events: none;"></div>
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="form-check">
-          <input type="checkbox" name="setting-otherquestion" id="check-setting-additional" value="false" >
+          <input type="checkbox" name="setting-additional" id="check-setting-additional" value="false" >
           <label for="check-setting-additional">
             プリント以外からも出題
           </label>
@@ -52,6 +52,18 @@
           </div>
           <div id="displaytext-explain" class="mb-3" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
             無効：全46問 / 有効：全58問
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" name="setting-timer" id="check-setting-timer" value="false" checked >
+          <label for="check-setting-timer">
+            不正解時のボタンロック
+          </label>
+          <div id="displaytext-explain" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            不正解時に1秒間「次の問題へ」ボタンをロックします。
+          </div>
+          <div id="displaytext-explain" class="mb-3" style=" font-size: 50%; text-align: left; color: rgb(105, 105, 105);">
+            ※無効にすると不正解を見逃してしまう可能性があります。
           </div>
         </div>
       </div>
@@ -99,7 +111,7 @@
       <p id="displaytext-result-correct" style="font-size: 160%; color: rgb(220, 0, 0); font-weight: 1000;">[正答]</p>
       <p id="displaytext-result-wrong" style="font-size: 160%; color: rgb(136, 136, 136);">[誤答]</p>
       <p></p>
-      <div id="button-result-close" class="btn btn-lg btn-primary  mt-5" type="button" style="position:relative; left: 50%; top: 0px; transform: translateX(-50%); font-size: 100%;">次の問題へ</div>
+      <input id="button-result-close" value="次の問題へ" class="btn btn-lg btn-primary  mt-5" type="button" style="position:relative; left: 50%; top: 0px; transform: translateX(-50%); font-size: 100%;" disabled>
     </div>
 
     <div id="modal-totalscore-container" style="width: 70%; position: fixed; top: 200px; left: 50%; text-align: center; transform: translateX(-50%); background-color: #fff; padding: 20px; opacity: 0; pointer-events: none;">
