@@ -367,7 +367,6 @@ let quizLenght = quiz.length;
 let answerCount = 0;
 let quizMaxCount = 15;
 let quizCount = quizMaxCount;
-let quizRemain = quizCount;
 let quizChosen = 0;
 let userAnswer = "";
 let userScore = 0;
@@ -401,6 +400,15 @@ const setQuestion = () => {
   document.getElementById('displaytext-count').textContent = answerCount + 1 + '/' + quizMaxCount
 };
 
+//ボタン切り替え
+const changeButton = (b) => {
+    if(document.getElementById('check-setting-timer').checked === true){
+      document.getElementById('button-result-close').disabled = b;
+    }else{
+        document.getElementById('button-result-close').disabled = false;
+    };
+};
+
 //結果モーダル表示
 const displayResult = (r) => {
   //表示
@@ -411,9 +419,12 @@ const displayResult = (r) => {
   document.getElementById('modal-result-container').style.opacity = 1;
   document.getElementById('modal-result-container').style.pointerEvents = '';
   document.getElementById('displaytext-result-result').style.color = 'rgb(0, 0, 0)' ;
+  changeButton(true);
+  //カウント
+  answerCount++
   //最後の問題の場合
-  if(quizRemain === 1){
-    document.getElementById('button-result-close').textContent = "結果画面へ"
+  if(answerCount === quizMaxCount){
+    document.getElementById('button-result-close').value = "結果画面へ"
   }
   //正誤判定
   if(r === true){
@@ -421,13 +432,19 @@ const displayResult = (r) => {
     document.getElementById('displaytext-result-result').textContent = '正解！' ;
     document.getElementById('displaytext-result-result').style.color = 'rgb(220, 0, 0)' ;
     document.getElementById('displaytext-result-wrong').textContent = '' ;
+    changeButton(false);
     userScore++;
   } else{
     //不正解時
     document.getElementById('displaytext-result-result').textContent = '不正解...' ;
     document.getElementById('displaytext-result-result').style.color = 'rgb(0, 33, 220)' ;
     document.getElementById('displaytext-result-wrong').textContent = ' ×  ' + userAnswer ;
-  }
+    if(userAnswer === "解答なし"){
+      setTimeout(changeButton,10,false);
+    }else{
+      setTimeout(changeButton,1000,false);
+    };
+  };
 };
 
 //最終結果
@@ -443,7 +460,7 @@ const displayTotalScore = () => {
     document.getElementById('displaytext-totalscore-comment').textContent = '全問正解！'
   }else {
     document.getElementById('displaytext-totalscore-comment').textContent = ''
-  }
+  };
 } 
 
 //正誤判定
@@ -451,6 +468,8 @@ const checkAnswer = () => {
   //解答なし処理
   if(document.getElementById('textbox-answer').value === ""){
     document.getElementById('textbox-answer').value = "解答なし"
+  }else if(document.getElementById('textbox-answer').value.length > 20){
+    document.getElementById('textbox-answer').value = "ふざけてる？w"
   };
   userAnswer = document.getElementById('textbox-answer').value;
   //モーダル表示
@@ -468,11 +487,8 @@ const nextQuestion = () => {
   document.getElementById('textbox-answer').value = "";
   //問題削除
   quiz.splice(quizChosen,1);
-  //残り問題数
-  answerCount++
-  quizRemain = quizRemain - 1;
   //まだあるか
-  if(quizRemain > 0){
+  if(answerCount < quizMaxCount){
     //問題設定
     setQuestion();
   } else{
