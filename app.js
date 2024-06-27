@@ -228,8 +228,6 @@ quiz = [
       "correct" : [
           "赤褐色",
           "赤色",
-          "赤（褐）色",
-          "赤(褐)色",
           "暗赤色"
       ]
   },
@@ -237,9 +235,7 @@ quiz = [
       "question" : "BaCrO₄",
       "correct" : [
           "淡黄色",
-          "黄色",
-          "（淡）黄色",
-          "(淡)黄色"
+          "黄色"
       ]
   },
   {
@@ -257,7 +253,8 @@ quiz = [
   {
       "question" : "MnO₂",
       "correct" : [
-          "黒褐色"
+          "黒褐色",
+          "黒色"
       ]
   },
   {
@@ -356,7 +353,7 @@ quizAdditional = [
     {
         "question" : "MnS",
         "correct" : [
-            "桃色"
+            "淡桃色"
         ]
     }
 ]
@@ -465,15 +462,21 @@ const displayTotalScore = () => {
 
 //正誤判定
 const checkAnswer = () => {
-  //解答なし処理
+  //解答なし処理とおふざけ
   if(document.getElementById('textbox-answer').value === ""){
     document.getElementById('textbox-answer').value = "解答なし"
+  }else if(document.getElementById('textbox-answer').value === "無職"){
+    document.getElementById('textbox-answer').value = "無職  <= 働け"
   }else if(document.getElementById('textbox-answer').value.length > 20){
-    document.getElementById('textbox-answer').value = "ふざけてる？w"
+    document.getElementById('textbox-answer').value = "...長過ぎね？"
   };
   userAnswer = document.getElementById('textbox-answer').value;
   //モーダル表示
-  displayResult(quiz[quizChosen].correct.includes(userAnswer));
+  if(userAnswer.includes("色")){
+    displayResult(quiz[quizChosen].correct.includes(userAnswer));
+  }else{
+    displayResult(quiz[quizChosen].correct.includes(userAnswer + "色"));
+  }
 };
 
 //次の問題へ
